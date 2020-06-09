@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright ${license.git.copyrightYears} the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="D:\Program Files\Apache\maven-repository\mysql\mysql-connector-java\5.1.47\mysql-connector-java-5.1.47.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <!--plugin type="mybatis.generator.plugins.ModelCommentsPlugin"/-->
+        <!--
+        <plugin type="org.mybatis.generator.osd.mybatis3.plugin.HandlerGenerator" >
+            <property name="targetProject" value="E:/AICloud/tool/mybatis-generator/src" />
+            <property name="targetPackage" value="com.ai.osd.dao.api.handler" />
+            version为1.0对应1.06版本的handler，2.0对应2.0版本的handler
+            <property name="version" value="1.0" />
+        </plugin>
+        -->
+        <!--<plugin type="org.mybatis.generator.osd.mybatis3.plugin.CriteriaPackageRenamePlugin" >
+            <property name="targetPackage" value="com.cmcc.uninoti.domain.criteria" />
+        </plugin>-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/muninotidb?allowMultiQueries=true"
+                        userId="root"
+                        password="58504201">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.cmcc.uninoti.domain" targetProject="D:\workspace\gitfix\Forum\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="D:\workspace\gitfix\Forum\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cmcc.uninoti.dao" targetProject="D:\workspace\gitfix\Forum\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要对那些数据表进行生成操作，必须要有一个. -->
+        <table schema="mybatis" tableName="unidoc_code_management" domainObjectName="UnidocCodeManagement"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+
+    </context>
+</generatorConfiguration>

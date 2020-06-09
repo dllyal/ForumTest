@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dllyal.forum.mapper.TopicMapper" >
+  <resultMap id="BaseResultMap" type="com.dllyal.forum.model.Topic" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tcontext" property="tcontext" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="viewnum" property="viewnum" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    tid, tname, tcontext, createtime, modifytime,bid, uid, viewnum, note, state
+  </sql>
+  
+  <!--发表新的主题帖  -->
+  <insert id="insertNewTopic" parameterType="com.dllyal.forum.model.Topic" >
+    insert into topic 
+	(
+		tname, tcontext, createtime, modifytime, bid, uid
+	)
+	values
+	(
+		#{tname,jdbcType=VARCHAR},#{tcontext,jdbcType=VARCHAR},NOW(),NOW(),#{bid,jdbcType=INTEGER},#{uid,jdbcType=INTEGER}
+	)
+  </insert>
+  
+  <!-- 用户的主题帖//不含隐藏,即state=0 -->
+  <select id="selectTopicsByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic
+    where uid = #{uid,jdbcType=INTEGER} AND state=0 ORDER BY createtime DESC
+  </select>
+  
+  <!-- 用户的主题帖含隐藏 -->
+  <select id="selectAllTopicsByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic
+    where uid = #{uid,jdbcType=INTEGER} ORDER BY createtime DESC
+  </select>
+  
+  <!-- 更新题帖子 时间  -->
+  <update id="updateTopictimeByTid" >
+  	UPDATE topic SET modifytime = NOW() WHERE tid = #{tid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- view+1  -->
+  <update id="updateTopicViewByTid" >
+  	UPDATE topic SET viewnum = viewnum+1 WHERE tid = #{tid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 软删除主题帖子  -->
+  <update id="updateDelTopicByTid" >
+    UPDATE topic SET state = 1 WHERE tid = #{tid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 恢复软删除主题帖子   -->
+  <update id="updateReTopicByTid" >
+    UPDATE topic SET state = 0 WHERE tid = #{tid,jdbcType=INTEGER}
+  </update>
+  
+  
+</mapper>

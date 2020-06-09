@@ -1,0 +1,18 @@
+2019-02-12 14:26:33,384 [c.d.f.ForumApplication] INFO  Starting ForumApplication on DING_YYUN with PID 17000 (E:\linshi\forum\target\classes started by ding_yyun in E:\linshi\forum)
+2019-02-12 14:26:33,409 [c.d.f.ForumApplication] INFO  No active profile set, falling back to default profiles: default
+2019-02-12 14:26:40,996 [o.s.b.w.e.t.TomcatWebServer] INFO  Tomcat initialized with port(s): 8081 (http)
+2019-02-12 14:26:41,179 [o.a.c.c.StandardService] INFO  Starting service [Tomcat]
+2019-02-12 14:26:41,179 [o.a.c.c.StandardEngine] INFO  Starting Servlet engine: [Apache Tomcat/9.0.14]
+2019-02-12 14:26:41,186 [o.a.c.c.AprLifecycleListener] INFO  The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Java\jdk1.8.0_181\jre\bin;C:\Program Files (x86)\Rational\common;C:\strawberry\c\bin;C:\strawberry\perl\bin\;C:\WINDOWS\System32\OpenSSH\;C:\Users\ding_yyun\AppData\Local\Microsoft\WindowsApps;;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;.]
+2019-02-12 14:26:42,094 [o.a.j.s.TldScanner] INFO  At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-02-12 14:26:42,102 [o.a.c.c.C.[.[.[/]] INFO  Initializing Spring embedded WebApplicationContext
+2019-02-12 14:26:42,102 [o.s.w.c.ContextLoader] INFO  Root WebApplicationContext: initialization completed in 8224 ms
+2019-02-12 14:26:42,495 [c.a.d.s.b.a.DruidDataSourceAutoConfigure] INFO  Init DruidDataSource
+2019-02-12 14:26:47,352 [c.a.d.p.DruidDataSource] INFO  {dataSource-1} inited
+2019-02-12 14:26:48,196 [o.s.s.c.ThreadPoolTaskExecutor] INFO  Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-12 14:26:48,812 [o.s.b.a.w.s.WelcomePageHandlerMapping] INFO  Adding welcome page template: index
+2019-02-12 14:26:49,645 [o.s.b.w.e.t.TomcatWebServer] INFO  Tomcat started on port(s): 8081 (http) with context path ''
+2019-02-12 14:26:49,647 [c.d.f.ForumApplication] INFO  Started ForumApplication in 19.396 seconds (JVM running for 23.252)
+2019-02-12 14:27:02,760 [o.a.c.c.C.[.[.[/]] INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-12 14:27:02,761 [o.s.w.s.DispatcherServlet] INFO  Initializing Servlet 'dispatcherServlet'
+2019-02-12 14:27:02,767 [o.s.w.s.DispatcherServlet] INFO  Completed initialization in 6 ms

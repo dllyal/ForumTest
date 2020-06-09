@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dllyal.forum.mapper.TopicShowMapper" >
+  <resultMap id="BaseResultMap" type="com.dllyal.forum.model.TopicShow" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tcontext" property="tcontext" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="viewnum" property="viewnum" jdbcType="INTEGER" />
+    <result column="backnum" property="backnum" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="upicsrc" property="upicsrc" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, tname, tcontext, createtime, modifytime, bid, viewnum, backnum, note, uid, uname, upicsrc, sign, state
+  </sql>
+  
+  <!-- 根据tid获取话题信息 -->
+  <select id="selectTopicByTid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	SELECT 
+		t.tid,t.tname,t.tcontext,t.createtime,t.modifytime,t.bid,t.viewnum,
+		(SELECT COUNT(*) FROM note n WHERE n.tid=t.tid) AS backnum,
+		t.note,u.uid,u.uname,u.upicsrc,u.sign,t.state
+	FROM topic t LEFT JOIN `user` u ON t.uid=u.uid WHERE t.state=0 AND t.tid=#{tid,jdbcType=INTEGER};
+  </select>
+  
+  <!-- 根据bid获取话题列表 -->
+  <select id="selectTopicsByBid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	SELECT 
+		t.tid,t.tname,t.tcontext,t.createtime,t.modifytime,t.bid,t.viewnum,
+		(SELECT COUNT(*) FROM note n WHERE n.tid=t.tid) AS backnum,
+		t.note,u.uid,u.uname,u.upicsrc,u.sign,t.state
+	FROM topic t LEFT JOIN `user` u ON t.uid=u.uid WHERE t.state=0 AND t.bid=#{bid,jdbcType=INTEGER} ORDER BY t.modifytime DESC
+  </select>
+  
+</mapper>
